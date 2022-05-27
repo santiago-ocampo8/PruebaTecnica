@@ -1,0 +1,41 @@
+
+
+
+
+<br>
+
+<h3>Personas</h3>
+<br>
+<button [routerLink]="'/create'" type="button"  class="btn btn-primary">Crear</button>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Tipo de Identificación</th>
+        <th scope="col">Identificación</th>
+        <th scope="col">Cumpleaños</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of persons">
+        <td>{{item.name}}</td>
+        <td>{{item.last_name}}</td>
+        <td>{{item.identification}}</td>
+        <td>{{item.identification_type}}</td>
+        <td>{{item.date_of_birth}}</td>
+        <td>
+          <button type="button" [routerLink]="['/edit',item.id]" class="btn btn-warning">Editar</button> 
+          <button [disabled]="loading2" type="button" (click)="deletePerson(item.id)" class="btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>

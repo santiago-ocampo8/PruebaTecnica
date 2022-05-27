@@ -1,0 +1,1 @@
+export const APP_HOST = "http://localhost:8000/api/";

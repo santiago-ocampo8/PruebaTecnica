@@ -1,0 +1,33 @@
+
+<br>
+<h3>Editar</h3>
+<br>
+
+
+<form #f="ngForm" class="row g-3 needs-validation" (ngSubmit)="updatePerson()">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Nombre</label>
+      <input name="name" type="text" [(ngModel)]="person.name"  class="form-control" id="validationCustom01" value="Mark" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02"   class="form-label">Apellido</label>
+      <input name="last_name" type="text" [(ngModel)]="person.last_name" class="form-control" id="validationCustom02" value="Otto" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Tipo de indentificación</label>
+      <input name="identification_type" type="text" [(ngModel)]="person.identification_type" class="form-control" id="validationCustom03" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationCustom03" class="form-label">Fecha</label>
+        <input name="date_of_birth" type="date" [(ngModel)]="person.date_of_birth" class="form-control" id="validationCustom03" required>
+      </div>
+   
+    <div class="col-md-4">
+      <label for="validationCustom05" class="form-label">Identificación</label>
+      <input name="identification" type="text" [(ngModel)]="person.identification" class="form-control" id="validationCustom05" required>
+    </div>
+
+    <div class="col-12">
+      <button [disabled]="loading" class="btn btn-primary" type="submit">Crear</button>
+    </div>
+  </form>
