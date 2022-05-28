@@ -12,8 +12,8 @@ export class PersonService {
 
   constructor(private http: HttpClient) { }
 
-  getPersons(): Observable<ResponseModel> {
-    return this.http.get<ResponseModel>(`${APP_HOST}person`,
+  getPersons(data:{}): Observable<any> {
+    return this.http.post<any>(`${APP_HOST}person`,data,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

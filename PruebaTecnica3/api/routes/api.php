@@ -33,7 +33,6 @@ Route::group([
     Route::put('edit/{person}', [PersonController::class, 'edit'])->name('edit');
     Route::delete('delete/{person}', [PersonController::class, 'delete'])->name('delete');
     Route::get('{person}', [PersonController::class, 'get'])->name('get');
-    Route::get('pagination', [PersonController::class, 'list'])->name('list');
-    Route::get('', [PersonController::class, 'listPersons'])->name('listPersons');
+    Route::post('', [PersonController::class, 'list'])->name('list');
 }
 );

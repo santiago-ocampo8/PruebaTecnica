@@ -1,44 +1,71 @@
-
-
-
-
 <br>
 
 <h3>Personas</h3>
 <br>
-<button [routerLink]="'/view'" type="button"  class="btn btn-success">Ver perfil</button>
+<button [routerLink]="'/view'" type="button" class="btn btn-success">Ver perfil</button>
 <br>
 <br>
-<button [routerLink]="'/create'" type="button"  class="btn btn-primary">Crear</button>
+<button [routerLink]="'/create'" type="button" class="btn btn-primary">Crear</button>
 <br>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Tipo de Identificación</th>
-        <th scope="col">Identificación</th>
-        <th scope="col">Cumpleaños</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of persons">
-        <td>{{item.name}}</td>
-        <td>{{item.last_name}}</td>
-        <td>{{item.identification}}</td>
-        <td>{{item.identification_type}}</td>
-        <td>{{item.date_of_birth}}</td>
-        <td>
-          <button type="button" [routerLink]="['/edit',item.id]" class="btn btn-warning">Editar</button> 
-          <button [disabled]="loading2" type="button" (click)="deletePerson(item.id)" class="btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
+<br>
 
-  </table>
-  <div *ngIf="loading" class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+<h3>Busqueda</h3>
+<div class="search">
+  
+  <select class="form-select" style="width:200px" [(ngModel)]="type" aria-label="Default select example">
+    <option selected>Seleccione</option>
+    <option value="name">Nombre</option>
+    <option value="last_name">Apellido</option>
+    <option value="identification_type">Tipo de identificación</option>
+    <option value="identification">Identificación</option>
+    
+  </select>
+  <input type="text" style="width:300px" class="form-control" [(ngModel)]="query"
+  aria-describedby="basic-addon1">
+  <button (click)="search()" [disabled]="loading" type="button" class="btn btn-primary">Buscar</button>
+ 
+</div>
+
+ 
+<br>
+ 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Tipo de Identificación</th>
+      <th scope="col">Identificación</th>
+      <th scope="col">Cumpleaños</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of persons">
+      <td>{{item.name}}</td>
+      <td>{{item.last_name}}</td>
+      <td>{{item.identification_type}}</td>
+      <td>{{item.identification}}</td>
+      <td>{{item.date_of_birth}}</td>
+      <td>
+        <button type="button" [routerLink]="['/edit',item.id]" class="btn btn-warning">Editar</button>
+        <button [disabled]="loading2" type="button" (click)="deletePerson(item.id)"
+          class="btn btn-danger">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+
+<div *ngIf="loading" class="text-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
   </div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><button class="page-link" [disabled]="prevEnable" (click)="prev()">Anterior</button></li>
+    <li class="page-item"><button class="page-link" disabled>{{page}}</button></li>
+    <li class="page-item"><button class="page-link" [disabled]="nextEnable" (click)="next()">Siguiente</button></li>
+  </ul>
+</nav>

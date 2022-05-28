@@ -20,6 +20,11 @@ export class ListComponent implements OnInit {
     date_of_birth: Date(),
     user: {}
   }
+  page=0;
+  type="Seleccione";
+  query="";
+  prevEnable=false;
+  nextEnable=false;
 
   persons: PersonModel[] = []
 
@@ -32,12 +37,25 @@ export class ListComponent implements OnInit {
 
   getPersons() {
     this.loading = true;
-    this.service.getPersons().subscribe(res => {
+
+    console.log(this.page);
+    console.log(this.query);
+    console.log(this.type);
+
+    this.service.getPersons({
+      page: this.page,
+      type: this.type,
+      query: this.query,
+    }).subscribe(res => {
       if (res.error == true) {
         alert(res.message);
         this.loading=false;
         return
       }
+      console.log(res);
+      this.page=res.current_page;
+      this.nextEnable=res.next_page_url==null;
+      this.prevEnable=res.prev_page_url==null;
       this.persons = res.data;
       this.loading = false;
     },err => {
@@ -62,5 +80,19 @@ export class ListComponent implements OnInit {
       this.loading=false;
       alert("Ocurrió un error al hacer la petición");
     })
+  }
+
+  next(){
+    this.page++;
+    this.getPersons();
+  }
+
+  prev(){
+    this.page--;
+    this.getPersons();
+  }
+  search() {
+    this.page = 1;
+    this.getPersons();
   }
 }
