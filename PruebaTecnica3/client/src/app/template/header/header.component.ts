@@ -31,14 +31,13 @@ export class HeaderComponent implements OnInit {
         return
       }
      
-
       localStorage.clear();
       this.showMenu();
       clearTimeout(this.time);
       this.router.navigate(["/login"]);
 
     }, err => {
-      console.log("Ocurrió un error al hacer la petición" + err.message);
+      alert("Ocurrió un error al hacer la petición");
     });
   }
   showMenu(): void {

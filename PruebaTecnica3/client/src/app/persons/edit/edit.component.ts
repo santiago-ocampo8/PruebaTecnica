@@ -28,8 +28,17 @@ export class EditComponent implements OnInit {
   getPerson() {
     this.loading = true;
     this.service.getPerson(this._router.snapshot.params['id']).subscribe(res => {
+     
+      if (res.error == true) {
+        alert(res.message);
+        this.loading=false;
+        return
+      }
       this.person = res.data;
       this.loading = false;
+    },err => {
+      this.loading=false;
+      alert("Ocurrió un error al hacer la petición");
     })
   }
 
@@ -43,6 +52,9 @@ export class EditComponent implements OnInit {
       }
       this.router.navigate(["/list"]);
       this.loading=false;
+    },err => {
+      this.loading=false;
+      alert("Ocurrió un error al hacer la petición");
     });
   }
 }

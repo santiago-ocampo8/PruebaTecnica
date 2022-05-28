@@ -33,9 +33,16 @@ export class ListComponent implements OnInit {
   getPersons() {
     this.loading = true;
     this.service.getPersons().subscribe(res => {
-      console.log(res);
+      if (res.error == true) {
+        alert(res.message);
+        this.loading=false;
+        return
+      }
       this.persons = res.data;
       this.loading = false;
+    },err => {
+      this.loading=false;
+      alert("Ocurrió un error al hacer la petición");
     })
   }
 
@@ -43,10 +50,17 @@ export class ListComponent implements OnInit {
   deletePerson(id:number) {
     this.loading2 = true;
     this.service.deletePerson(id).subscribe(res => {
-      console.log(res);
+      if (res.error == true) {
+        alert(res.message);
+        this.loading=false;
+        return
+      }
       this.persons = res.data;
       this.loading2 = false;
       this.getPersons();
+    },err => {
+      this.loading=false;
+      alert("Ocurrió un error al hacer la petición");
     })
   }
 }

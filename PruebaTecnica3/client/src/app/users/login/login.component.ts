@@ -22,13 +22,17 @@ export class LoginComponent implements OnInit {
     await this.service.login(this.username, this.password).subscribe(res => {
 
       if (res.error == true) {
+        alert(res.message);
+        this.loading=false;
         return
       }
       this.service.saveStorage("token", res.data.token);
       this.router.navigate(["/list"]);
       this.service.reload.emit();
       this.loading=false;
+    },err => {
+      this.loading=false;
+      alert("Ocurrió un error al hacer la petición");
     });
   }
-
 }

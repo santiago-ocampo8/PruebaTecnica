@@ -33,10 +33,15 @@ export class CreateComponent implements OnInit {
     await this.service.createPersons(this.person).subscribe(res => {
 
       if (res.error == true) {
+        alert(res.message);
+        this.loading=false;
         return
       }
       this.router.navigate(["/list"]);
       this.loading=false;
+    },err => {
+      this.loading=false;
+      alert("Ocurrió un error al hacer la petición");
     });
   }
 }

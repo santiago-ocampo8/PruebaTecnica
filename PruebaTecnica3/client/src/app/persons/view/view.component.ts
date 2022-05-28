@@ -28,7 +28,14 @@ export class ViewComponent implements OnInit {
 
   getPerson() {
     this.service.me().subscribe(res => {
+
+      if (res.error == true) {
+        alert(res.message);
+        return
+      }
       this.person = res.data;
+    },err => {
+      alert("Ocurrió un error al hacer la petición");
     })
   }
   
