@@ -67,4 +67,21 @@ class AuthController extends Controller
             return $response->toJSON();
         }
     }
+
+    public function me()
+    {
+        $response = new Response();
+        try {
+            $response->error = false;
+            $user            = Auth::user();
+            $response->data  = $user->person;
+
+            return $response->toJSON();
+        } catch (\Throwable $th) {
+
+            $response->error   = true;
+            $response->message = "Error interno en el servidor";
+            return $response->toJSON();
+        }
+    }
 }

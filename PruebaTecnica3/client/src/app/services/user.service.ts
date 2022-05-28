@@ -45,6 +45,19 @@ export class UserService {
     );
   }
 
+  me(): Observable<ResponseModel> {
+
+    this.tokenId = this.getToken() || '';
+    return this.http.get<ResponseModel>(`${APP_HOST}auth/me`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.tokenId}`
+        })
+      }
+    );
+  }
+
   saveStorage(date="", token=""){
     localStorage.setItem(date,token);
   }

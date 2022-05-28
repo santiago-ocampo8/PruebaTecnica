@@ -17,4 +17,5 @@ class Person extends Model
         'date_of_birth',
     ];
     use HasFactory;
+
 }

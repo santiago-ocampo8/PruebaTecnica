@@ -5,6 +5,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
 import { PersonsModule } from './persons.module';
+import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,13 @@ const routes: Routes = [
   {
     path: "edit/:id",
     component: EditComponent,
+    canActivate:[
+      UrlInjectionGuard
+    ]
+  },
+  {
+    path: "view",
+    component: ViewComponent,
     canActivate:[
       UrlInjectionGuard
     ]

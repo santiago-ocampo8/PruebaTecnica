@@ -6,13 +6,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CreateComponent } from './create/create.component';
 import { RouterModule } from '@angular/router';
 import { EditComponent } from './edit/edit.component';
+import { ViewComponent } from './view/view.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    ViewComponent
   ],
   imports: [
     FormsModule,
@@ -23,7 +25,8 @@ import { EditComponent } from './edit/edit.component';
   exports:[
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    ViewComponent
   ]
 })
 export class PersonsModule { }
