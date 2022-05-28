@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       }
       this.service.saveStorage("token", res.data.token);
       this.router.navigate(["/list"]);
+      this.service.reload.emit();
       this.loading=false;
     });
   }

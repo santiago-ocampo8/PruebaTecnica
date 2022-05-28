@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output, } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../models/response.model';
@@ -8,6 +8,9 @@ import { APP_HOST } from '../config/contants';
   providedIn: 'root'
 })
 export class UserService {
+
+
+  @Output() reload: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
